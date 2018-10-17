@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <title>Test</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec3 pos;
+		attribute vec4 vColor;
+		varying vec4 fColor;
+		uniform vec4 det;
+		void main() {
+			gl_Position = vec4(pos,1.0) + det;
+			gl_PointSize = 1.0;
+			fColor = vColor;
+		}
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        varying vec4 fColor;
+        void main() {
+        gl_FragColor = fColor;
+        }
+    </script>
+
+    <script type="text/javascript" src="/static/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/static/common/webgl-utils.js"></script>
+    <script type="text/javascript" src="/static/common/initShaders.js"></script>
+    <script type="text/javascript" src="/static/common/MV.js"></script>
+    <script type="text/javascript" src="graphics.js"></script>
+</head>
+
+<body onload="init()" style="background-image: url('/static/timg.jpg');background-size:100% 100%;  ">
+<p id="yohane" style="background-color: white"></p>
+<div  class="col-md-8 column">
+    <canvas id="myCanvas" width="700" height="700">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+
+</div>
+<div class="col-md-4 column">
+    <p id="results"></p>
+    <h2 id="dialogs">熊本熊：</h2>
+    <p>选择重力模式 </p>
+
+    <select id="Controls" size="3">
+        <option value="0">正常</option>
+        <option value="1">混乱重力模式</option>
+        <option value="2">开挂重力模式</option>
+    </select>
+
+    <p>选择移动速度 </p>
+    <div>
+        <input id="slider" type="range" min="0.25" max="5" step="0.125" value="1" />
+    </div>
+    <p><button type="button" class="btn btn-default btn-info" onclick="fly()">飞上云霄</button></p>
+</div>
+</body>
+</html>

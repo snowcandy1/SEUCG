@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<h1>逗比</h1>
+
+<p>A向左移动，D向右移动，W跳 </p>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Rotating Square</title>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition;
+        uniform float a1;
+        uniform float a2;
+
+        void
+        main()
+        {
+
+
+        gl_Position.x = vPosition.x+a1;
+        gl_Position.y = vPosition.y+a2;
+        gl_Position.z = 0.0;
+        gl_Position.w = 1.0;
+        }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+
+        precision mediump float;
+
+        void
+        main()
+        {
+        gl_FragColor = vec4( 0.2, 0.8, 0.5, 1.0 );
+        }
+    </script>
+
+    <script type="text/javascript" src="/static/common/webgl-utils.js"></script>
+    <script type="text/javascript" src="/static/common/initShaders.js"></script>
+    <script type="text/javascript" src="/static/common/MV.js"></script>
+    <script type="text/javascript" src="CGTest.js"></script>
+</head>
+
+<p>选择跳跃方向 </p>
+
+<select id="Controls" size="3">
+    <option value="0">原地跳</option>
+    <option value="1">向前跳</option>
+    <option value="2">向后跳</option>
+
+
+</select>
+
+<p>选择移动速度 </p>
+<div>
+    很慢 <input id="slider" type="range"
+              min="0.25" max="5" step="0.25" value="1" />
+    很快
+</div>
+<body>
+    <canvas id="gl-canvas" width="1024" height="1024">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</body>
+</html>
